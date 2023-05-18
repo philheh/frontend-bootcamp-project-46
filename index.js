@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
-import yaml from 'js-yaml';
+import parse from './parser.js';
 
 const prefixes = {
   added: '+',
@@ -10,16 +10,6 @@ const prefixes = {
 };
 
 const readFile = (pathToFile) => fs.readFileSync(pathToFile, 'utf-8');
-
-const parse = (file, format) => {
-  if (format === '.json') {
-    return JSON.parse(file);
-  }
-  if (format === '.yml' || format === '.yaml') {
-    return yaml.load(file);
-  }
-  return null;
-};
 
 const convertToString = (coll) => {
   const result = coll.map((item) => {

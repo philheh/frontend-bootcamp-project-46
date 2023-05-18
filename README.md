@@ -7,6 +7,8 @@
 ### Codeclimate Test Coverage Badge
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d44e8f34625c7c5f1bb0/test_coverage)](https://codeclimate.com/github/philheh/frontend-bootcamp-project-46/test_coverage)
 
-
-### step-1 gendiff demonstration
+### step-3 gendiff demonstration
 https://asciinema.org/a/ThSUr11uhNBpMp6KifC8Y8vtI
+
+### step-5 gendiff demonstration
+https://asciinema.org/a/GvUqxDiSoQ6Fyj3RfSi62p7GM
