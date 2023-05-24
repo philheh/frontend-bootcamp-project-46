@@ -13,6 +13,9 @@ const readFile = (name) => fs.readFileSync(getFixturePath(name), 'utf-8');
 
 const testData = readFile('diffFile1File2.txt');
 const nestedData = readFile('diffnested1nested2.txt');
+const plainData = readFile('diffPlain.txt');
+const jsonData = readFile('diffJSON.txt');
+
 test('gendiff JSON', () => {
   expect(diff(getFixturePath('plainFile1.json'), getFixturePath('plainFile2.json'))).toEqual(testData);
 });
@@ -27,6 +30,14 @@ test('gendiff NESTED JSON', () => {
 
 test('gendiff NESTED YAML', () => {
   expect(diff(getFixturePath('nestedYAML1.yml'), getFixturePath('nestedYAML2.yml'))).toEqual(nestedData);
+});
+
+test('gendiff PLAIN', () => {
+  expect(diff(getFixturePath('nestedFile1.json'), getFixturePath('nestedFile2.json'), 'plain')).toEqual(plainData);
+});
+
+test('gendiff JSON', () => {
+  expect(diff(getFixturePath('nestedFile1.json'), getFixturePath('nestedFile2.json'), 'json')).toEqual(jsonData);
 });
 
 test('parser', () => {

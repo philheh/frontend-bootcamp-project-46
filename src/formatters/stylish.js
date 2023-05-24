@@ -28,15 +28,32 @@ const stylish = (coll) => {
       const keyIndent = depth * spaces - 2;
       switch (node.status) {
         case 'nested':
-          return `${prefixes.nested}${blankSpace.repeat(keyIndent)}${node.key}: {${iter(node.value, depth + 1)}\n ${blankSpace.repeat(keyIndent + 1)}}`;
+          return `${prefixes.nested}${blankSpace.repeat(keyIndent)}${
+            node.key
+          }: {${iter(node.value, depth + 1)}\n ${blankSpace.repeat(
+            keyIndent + 1,
+          )}}`;
         case 'removed':
-          return `${blankSpace.repeat(keyIndent)}${prefixes.removed} ${node.key}: ${stringify(node.value, depth + 1)}`;
+          return `${blankSpace.repeat(keyIndent)}${prefixes.removed} ${
+            node.key
+          }: ${stringify(node.value, depth + 1)}`;
         case 'added':
-          return `${blankSpace.repeat(keyIndent)}${prefixes.added} ${node.key}: ${stringify(node.value, depth + 1)}`;
+          return `${blankSpace.repeat(keyIndent)}${prefixes.added} ${
+            node.key
+          }: ${stringify(node.value, depth + 1)}`;
         case 'changed':
-          return `${blankSpace.repeat(keyIndent)}${prefixes.removed} ${node.key}: ${stringify(node.oldValue, depth + 1)}\n${blankSpace.repeat(keyIndent)}${prefixes.added} ${node.key}: ${stringify(node.newValue, depth + 1)}`;
+          return `${blankSpace.repeat(keyIndent)}${prefixes.removed} ${
+            node.key
+          }: ${stringify(node.oldValue, depth + 1)}\n${blankSpace.repeat(
+            keyIndent,
+          )}${prefixes.added} ${node.key}: ${stringify(
+            node.newValue,
+            depth + 1,
+          )}`;
         default:
-          return `${blankSpace.repeat(keyIndent)}${prefixes.unchanged} ${node.key}: ${stringify(node.value, depth + 1)}`;
+          return `${blankSpace.repeat(keyIndent)}${prefixes.unchanged} ${
+            node.key
+          }: ${stringify(node.value, depth + 1)}`;
       }
     });
     return `\n${result.join('\n')}`;
