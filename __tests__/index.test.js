@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { test, expect } from '@jest/globals';
+import { test, expect, describe } from '@jest/globals';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import diff from '../index.js';
@@ -16,28 +16,19 @@ const nestedData = readFile('diffnested1nested2.txt');
 const plainData = readFile('diffPlain.txt');
 const jsonData = readFile('diffJSON.txt');
 
-test('gendiff JSON', () => {
-  expect(diff(getFixturePath('plainFile1.json'), getFixturePath('plainFile2.json'))).toEqual(testData);
-});
+const filesData = [
+  ['plainFile1.json', 'plainFile2.json', testData],
+  ['file1.yml', 'file2.yml', testData],
+  ['nestedFile1.json', 'nestedFile2.json', nestedData],
+  ['nestedYAML1.yml', 'nestedYAML2.yml', nestedData],
+  ['nestedFile1.json', 'nestedFile2.json', plainData, 'plain'],
+  ['nestedFile1.json', 'nestedFile2.json', jsonData, 'json'],
+];
 
-test('gendiff YML', () => {
-  expect(diff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toEqual(testData);
-});
-
-test('gendiff NESTED JSON', () => {
-  expect(diff(getFixturePath('nestedFile1.json'), getFixturePath('nestedFile2.json'))).toEqual(nestedData);
-});
-
-test('gendiff NESTED YAML', () => {
-  expect(diff(getFixturePath('nestedYAML1.yml'), getFixturePath('nestedYAML2.yml'))).toEqual(nestedData);
-});
-
-test('gendiff PLAIN', () => {
-  expect(diff(getFixturePath('nestedFile1.json'), getFixturePath('nestedFile2.json'), 'plain')).toEqual(plainData);
-});
-
-test('gendiff JSON', () => {
-  expect(diff(getFixturePath('nestedFile1.json'), getFixturePath('nestedFile2.json'), 'json')).toEqual(jsonData);
+describe.each(filesData)('gendiff test', (file1, file2, expected, format) => {
+  test(`compare ${file1} with ${file2} using ${format || 'default'} format`, () => {
+    expect(diff(getFixturePath(file1), getFixturePath(file2), format)).toEqual(expected);
+  });
 });
 
 test('parser', () => {

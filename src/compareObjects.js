@@ -1,8 +1,9 @@
 import _ from 'lodash';
 
 const objectComparator = (data1, data2) => {
-  const keys = _.union(_.keys(data1), _.keys(data2)).sort();
-  const comparedObjects = keys.map((key) => {
+  const keys = _.union(_.keys(data1), _.keys(data2));
+  const sortedKeys = _.sortBy(keys);
+  const comparedObjects = sortedKeys.map((key) => {
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
       return {
         key,
