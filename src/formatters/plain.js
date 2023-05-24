@@ -29,7 +29,7 @@ const plain = (data) => {
         case 'unchanged':
           return null;
         default:
-          throw new Error('OSHIBKA');
+          throw new Error('no such status');
       }
     });
     return result.filter((sentence) => sentence).join('\n');
