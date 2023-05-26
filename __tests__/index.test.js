@@ -2,7 +2,7 @@ import fs from 'fs';
 import { test, expect, describe } from '@jest/globals';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import diff from '../index.js';
+import diff from '../src/index.js';
 import parse from '../src/parser.js';
 
 const __filename = fileURLToPath(import.meta.url);
