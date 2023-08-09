@@ -1,7 +1,7 @@
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 import { test, expect, describe } from '@jest/globals';
 import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
 import diff from '../src/index.js';
 import parse from '../src/parser.js';
 
